@@ -1,7 +1,7 @@
 import { NavLink } from "@/components/NavLink";
 import { 
   ShoppingCart, Package, Users, FileText, BarChart3, Settings, Wallet, LogOut,
-  Building2, ShoppingBag, CreditCard, UsersRound, FileText as FileTextIcon, Wrench, FileCheck
+  Building2, ShoppingBag, CreditCard, UsersRound
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
@@ -12,9 +12,6 @@ import { Separator } from "./ui/separator";
 const menuItems = [
   // Operações
   { title: "Vendas", path: "/", icon: ShoppingCart, adminOnly: false, section: "Operações" },
-  { title: "Orçamentos", path: "/orcamentos", icon: FileTextIcon, adminOnly: false, section: "Operações" },
-  { title: "Ordens de Serviço", path: "/ordens-servico", icon: Wrench, adminOnly: false, section: "Operações" },
-  { title: "Contratos", path: "/contratos", icon: FileCheck, adminOnly: true, section: "Operações" },
   { title: "Faturas", path: "/faturas", icon: FileText, adminOnly: false, section: "Operações" },
   { title: "Caixa", path: "/caixa", icon: Wallet, adminOnly: false, section: "Operações" },
   

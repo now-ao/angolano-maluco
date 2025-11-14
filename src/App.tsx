@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
+import { Topbar } from "./components/Topbar";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Login from "./pages/Login";
@@ -22,6 +23,11 @@ import Employees from "./pages/Employees";
 import Budgets from "./pages/Budgets";
 import ServiceOrders from "./pages/ServiceOrders";
 import Contracts from "./pages/Contracts";
+import CostCenters from "./pages/CostCenters";
+import ChartOfAccounts from "./pages/ChartOfAccounts";
+import FixedAssets from "./pages/FixedAssets";
+import TimeClocks from "./pages/TimeClocks";
+import ProductionOrders from "./pages/ProductionOrders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,9 +55,11 @@ const AppContent = () => {
   return (
     <div className="flex min-h-screen w-full bg-background">
       <Sidebar />
-      <Routes>
-        <Route path="/login" element={<Navigate to="/" replace />} />
-        <Route path="/" element={<ProtectedRoute><Sales /></ProtectedRoute>} />
+      <div className="flex-1 flex flex-col">
+        <Topbar />
+        <Routes>
+          <Route path="/login" element={<Navigate to="/" replace />} />
+          <Route path="/" element={<ProtectedRoute><Sales /></ProtectedRoute>} />
         <Route path="/produtos" element={<ProtectedRoute allowedRoles={['admin']}><Products /></ProtectedRoute>} />
         <Route path="/clientes" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
         <Route path="/fornecedores" element={<ProtectedRoute allowedRoles={['admin']}><Suppliers /></ProtectedRoute>} />
@@ -61,6 +69,11 @@ const AppContent = () => {
         <Route path="/orcamentos" element={<ProtectedRoute><Budgets /></ProtectedRoute>} />
         <Route path="/ordens-servico" element={<ProtectedRoute><ServiceOrders /></ProtectedRoute>} />
         <Route path="/contratos" element={<ProtectedRoute allowedRoles={['admin']}><Contracts /></ProtectedRoute>} />
+        <Route path="/centros-custo" element={<ProtectedRoute allowedRoles={['admin']}><CostCenters /></ProtectedRoute>} />
+        <Route path="/plano-contas" element={<ProtectedRoute allowedRoles={['admin']}><ChartOfAccounts /></ProtectedRoute>} />
+        <Route path="/ativo-fixo" element={<ProtectedRoute allowedRoles={['admin']}><FixedAssets /></ProtectedRoute>} />
+        <Route path="/ponto-eletronico" element={<ProtectedRoute allowedRoles={['admin']}><TimeClocks /></ProtectedRoute>} />
+        <Route path="/ordens-producao" element={<ProtectedRoute allowedRoles={['admin']}><ProductionOrders /></ProtectedRoute>} />
         <Route path="/faturas" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
         <Route path="/relatorios" element={<ProtectedRoute allowedRoles={['admin']}><Reports /></ProtectedRoute>} />
         <Route path="/caixa" element={<ProtectedRoute><CashManagement /></ProtectedRoute>} />
@@ -68,6 +81,7 @@ const AppContent = () => {
         <Route path="/configuracoes" element={<ProtectedRoute allowedRoles={['admin']}><Settings /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </div>
     </div>
   );
 };
